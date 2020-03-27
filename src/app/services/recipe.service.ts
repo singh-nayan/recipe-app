@@ -1,11 +1,10 @@
 import { RecipeModel } from '../models/recipe.model';
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { IngredientModel } from '../models/ingredient.model';
 import { ShoppingService } from './shopping.service';
 
 @Injectable()
 export class RecipeService {
-    recipeSelected = new EventEmitter<RecipeModel>();
 
     private recipes: Array<RecipeModel> = [
         new RecipeModel('Chicken', 'Murg musallam', 'https://cdn.pixabay.com/photo/2016/06/15/19/09/food-1459693_960_720.jpg', [
@@ -38,7 +37,11 @@ export class RecipeService {
     }
 
     addIngredientsToShoppingList(items:IngredientModel[]){
-        this.shoppingSvc.addIngredients(items)
+        this.shoppingSvc.addIngredients(items);
+    }
+
+    getRecipe(index:number){
+        return this.recipes[index];
     }
 
 }
